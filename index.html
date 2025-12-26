@@ -14,7 +14,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
       color: #444;
     }
 
@@ -108,9 +109,27 @@
 
     /* Mobile-only support */
     @media (max-width: 768px) {
+      body {
+        align-items: flex-start;
+        padding: 20px 0;
+      }
+      .card {
+        margin: 20px auto;
+      }
       .popup {
         padding: 16px;
+        align-items: flex-start;
       }
+      .popup-content {
+        width: 100%;
+        max-height: 85vh;
+        overflow-y: auto;
+      }
+      .popup-image {
+        max-height: 45vh;
+        object-fit: cover;
+      }
+    }
       .popup-content {
         width: 100%;
         max-height: 85vh;
@@ -197,7 +216,7 @@
 
     <div class="popup" id="popup">
       <div class="popup-content">
-        <img src="IMG_6146.jpg" alt="Birthday memory" class="popup-image" />
+        <img src="IMG_6146.heic" alt="Birthday memory" class="popup-image" />
         <h3>🎉 For You, Anindita 🌸</h3>
         <p>
           May every wish you make today drift gently into reality,
