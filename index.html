@@ -21,7 +21,7 @@ body {
 
 /* MAIN CARD */
 .card {
-  max-width: 480px;
+  max-width: 500px;
   margin: 40px auto;
   background: rgba(255,255,255,0.94);
   padding: 40px 32px;
@@ -42,19 +42,24 @@ h2 {
   margin-bottom: 22px;
 }
 
-/* INTRO ANIMATION */
+/* LINE BY LINE ANIMATION */
 .intro span {
   display: block;
   opacity: 0;
-  animation: lineFade 1.4s ease forwards;
+  animation: lineFade 1.3s ease forwards;
 }
+
 .intro span:nth-child(1) { animation-delay: 0.3s; }
 .intro span:nth-child(2) { animation-delay: 1.2s; }
 .intro span:nth-child(3) { animation-delay: 2.1s; }
+.intro span:nth-child(4) { animation-delay: 3.0s; }
+.intro span:nth-child(5) { animation-delay: 3.9s; }
+.intro span:nth-child(6) { animation-delay: 4.8s; }
+.intro span:nth-child(7) { animation-delay: 5.8s; }
 
 @keyframes lineFade {
   from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* GLOW */
@@ -63,16 +68,16 @@ h2 {
 }
 
 @keyframes glowPulse {
-  0% { text-shadow: 0 0 0 rgba(244,162,97,0); }
-  40% { text-shadow: 0 0 12px rgba(244,162,97,0.8); }
-  70% { text-shadow: 0 0 18px rgba(244,162,97,0.6); }
+  0%   { text-shadow: 0 0 0 rgba(244,162,97,0); }
+  40%  { text-shadow: 0 0 12px rgba(244,162,97,0.8); }
+  70%  { text-shadow: 0 0 18px rgba(244,162,97,0.6); }
   100% { text-shadow: 0 0 0 rgba(244,162,97,0); }
 }
 
 /* BUTTON */
 .btn {
   display: inline-block;
-  margin-top: 18px;
+  margin-top: 22px;
   padding: 12px 28px;
   background: linear-gradient(135deg, #f4a261, #e76f51);
   color: white;
@@ -119,7 +124,7 @@ h2 {
   margin-bottom: 14px;
 }
 
-/* MOBILE SCROLL SUPPORT */
+/* MOBILE SUPPORT */
 @media (max-width: 768px) {
   .popup {
     align-items: flex-start;
@@ -142,21 +147,15 @@ h2 {
   <h1>Happy Birthday 🌸</h1>
   <h2>Dear Anindita</h2>
 
-  <p class="intro">
-    <span>You arrived at a time when I wasn't really looking for someone new,</span>
-    <span>the only person I could go up and talk to in college.</span>
+  <div class="intro">
+    <span>You arrived at a time when I wasn't really looking for someone new.</span>
+    <span>The only person I could go up and talk to in college.</span>
     <span>A blessing in disguise, a person who feels like family.</span>
-  </p>
-
-  <p>
-    I have always said and believed that time has nothing to do with how close you are to someone.<br>
-    A place where I can speak my mind, let my worries free, and still not be judged.
-  </p>
-
-  <p>
-    I could go on and on about you, but let's save some for when we meet,<br>
-    <strong class="glow">HAPPY BIRTHDAY, Friend!</strong>
-  </p>
+    <span>I have always said and believed that time has nothing to do with how close you are to someone.</span>
+    <span>A place where I can speak my mind, let my worries free, and still not be judged.</span>
+    <span>I could go on and on about you, but let's save some for when we meet.</span>
+    <span><strong class="glow">HAPPIEST BIRTHDAY, Friend!</strong></span>
+  </div>
 
   <p class="signature">— Always cheering for you, Rohit</p>
 
