@@ -94,7 +94,7 @@ h2 {
   color: #777;
 }
 
-/* POPUP */
+/* POPUP BACKDROP */
 .popup {
   position: fixed;
   inset: 0;
@@ -104,8 +104,11 @@ h2 {
   align-items: center;
   z-index: 9999;
   padding: 16px;
+  opacity: 0;
+  transition: opacity 0.35s ease;
 }
 
+/* POPUP CONTENT */
 .popup-content {
   background: white;
   padding: 28px;
@@ -114,8 +117,25 @@ h2 {
   width: 100%;
   text-align: center;
   box-shadow: 0 25px 45px rgba(0,0,0,0.2);
+  transform: translateY(16px) scale(0.96);
+  opacity: 0;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.45s ease;
 }
 
+/* ACTIVE STATE */
+.popup.show {
+  display: flex;
+  opacity: 1;
+}
+
+.popup.show .popup-content {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+/* IMAGE */
 .popup-image {
   width: 100%;
   max-height: 45vh;
@@ -139,22 +159,23 @@ h2 {
 
 <body>
 
-<audio autoplay loop>
+<!-- Background Music -->
+<audio id="bgMusic" loop>
   <source src="https://cdn.pixabay.com/download/audio/2022/10/03/audio_7c4c8a35a6.mp3" type="audio/mpeg">
 </audio>
 
 <div class="card">
   <h1>Happy Birthday 🌸</h1>
-  <h2>Dear Anindita</h2>
+  <h2>Dear Anindita,</h2>
 
   <div class="intro">
-    <span>You arrived at a time when I wasn't really looking for someone new.</span>
+    <span>You arrived at a time when I wasn't really looking for someone new,</span>
     <span>The only person I could go up and talk to in college.</span>
     <span>A blessing in disguise, a person who feels like family.</span>
     <span>I have always said and believed that time has nothing to do with how close you are to someone.</span>
     <span>A place where I can speak my mind, let my worries free, and still not be judged.</span>
-    <span>I could go on and on about you, but let's save some for when we meet.</span>
-    <span><strong class="glow">HAPPIEST BIRTHDAY, Friend!</strong></span>
+    <span>I could go on and on about you, but let's save some for when we meet,</span>
+    <span><strong class="glow">HAPPIEST BIRTHDAY, Friend!🫂💗</strong></span>
   </div>
 
   <p class="signature">— Always cheering for you, Rohit</p>
@@ -162,6 +183,7 @@ h2 {
   <a class="btn" onclick="celebrate()">Celebrate You 🌻</a>
 </div>
 
+<!-- POPUP -->
 <div class="popup" id="popup">
   <div class="popup-content">
     <img src="IMG_6146.jpg" class="popup-image" alt="Birthday memory">
@@ -176,11 +198,20 @@ h2 {
 
 <script>
 function celebrate() {
-  document.getElementById("popup").style.display = "flex";
+  const popup = document.getElementById("popup");
+  const music = document.getElementById("bgMusic");
+
+  music.volume = 0.6;
+  music.play().catch(() => {});
+
+  popup.style.display = "flex";
+  requestAnimationFrame(() => popup.classList.add("show"));
 }
 
 function closePopup() {
-  document.getElementById("popup").style.display = "none";
+  const popup = document.getElementById("popup");
+  popup.classList.remove("show");
+  setTimeout(() => popup.style.display = "none", 350);
 }
 </script>
 
