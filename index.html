@@ -16,7 +16,6 @@ body {
   background: linear-gradient(135deg, #fde2e4, #e0f4f1, #faf3dd);
   color: #444;
   overflow-x: hidden;
-  overflow-y: auto;
 }
 
 /* CARD */
@@ -30,6 +29,7 @@ body {
   box-shadow: 0 28px 50px rgba(0,0,0,0.12);
 }
 
+/* TEXT */
 h1 {
   font-family: 'Pacifico', cursive;
   font-size: 2.6rem;
@@ -38,7 +38,7 @@ h1 {
 
 h2 { margin-bottom: 22px; }
 
-/* TEXT ANIMATION */
+/* INTRO ANIMATION */
 .intro span {
   display: block;
   opacity: 0;
@@ -56,15 +56,6 @@ h2 { margin-bottom: 22px; }
 @keyframes lineFade {
   from { opacity: 0; transform: translateY(8px); }
   to { opacity: 1; transform: translateY(0); }
-}
-
-/* GLOW */
-.glow {
-  animation: glowPulse 2.5s ease-in-out forwards;
-}
-
-@keyframes glowPulse {
-  40% { text-shadow: 0 0 14px rgba(244,162,97,0.8); }
 }
 
 /* BUTTON */
@@ -98,11 +89,10 @@ button.btn {
 
 .popup.show { display: flex; }
 
-/* WRAPPER (for arrows outside box) */
+/* WRAPPER */
 .popup-wrapper {
   display: flex;
   align-items: center;
-  position: relative;
 }
 
 /* POPUP BOX */
@@ -113,10 +103,10 @@ button.btn {
   max-width: 400px;
   width: 100%;
   box-shadow: 0 25px 45px rgba(0,0,0,0.2);
-  overflow: hidden;
+  overflow: hidden; /* CRITICAL */
 }
 
-/* SLIDER */
+/* SLIDER (FIXED) */
 .slider {
   display: flex;
   width: 200%;
@@ -124,11 +114,12 @@ button.btn {
 }
 
 .page {
-  width: 100%;
+  width: 50%;          /* FIX */
   flex-shrink: 0;
   text-align: center;
 }
 
+/* IMAGE */
 .popup-image {
   width: 100%;
   max-height: 45vh;
@@ -137,7 +128,7 @@ button.btn {
   margin-bottom: 14px;
 }
 
-/* ARROWS (OUTSIDE) */
+/* ARROWS */
 .arrow {
   background: rgba(0,0,0,0.6);
   color: white;
@@ -171,14 +162,6 @@ button.btn {
   background: #f4a261;
   transform: scale(1.2);
 }
-
-/* MOBILE */
-@media (max-width: 768px) {
-  .popup-content {
-    max-height: 85vh;
-    overflow-y: auto;
-  }
-}
 </style>
 </head>
 
@@ -199,7 +182,7 @@ button.btn {
     <span>I have always said and believed that time has nothing to do with how close you are to someone.</span>
     <span>A place where I can speak my mind, let my worries free, and still not be judged.</span>
     <span>I could go on and on about you, but let's save some for when we meet,</span>
-    <span><strong class="glow">HAPPY BIRTHDAY, Friend!</strong></span>
+    <span><strong>HAPPY BIRTHDAY, Friend!</strong></span>
   </div>
 
   <p class="signature">— Always cheering for you, Rohit</p>
@@ -214,26 +197,18 @@ button.btn {
     <div class="popup-content">
       <div class="slider" id="slider">
 
-        <!-- PAGE 1 (UNCHANGED) -->
+        <!-- PAGE 1 -->
         <div class="page">
           <img src="IMG_6146.jpg" class="popup-image">
           <h3>🎉 For You, Anindita 🌸</h3>
-          <p>
-           I promise you there will never be a day
-           Where I don't annoy you. 
-           Will forever be your headache of a friend.
-           To many more such annoying years!            
-          </p>
+          <p>May every wish you make today drift gently into reality.</p>
         </div>
 
-        <!-- PAGE 2 (IMAGE ADDED) -->
+        <!-- PAGE 2 -->
         <div class="page">
-          <img src="page2_img.jpeg" class="popup-image" alt="Memory">
+          <img src="page2_img.jpeg" class="popup-image">
           <h3>💫 Another Page</h3>
-          <p>
-            Some moments don’t need explaining.
-            They just feel right.
-          </p>
+          <p>Some moments don’t need explaining. They just feel right.</p>
           <button class="btn" onclick="closePopup()">Close ✨</button>
         </div>
 
@@ -254,20 +229,14 @@ button.btn {
 const popup = document.getElementById("popup");
 const slider = document.getElementById("slider");
 const dots = document.querySelectorAll(".dot");
-const music = document.getElementById("bgMusic");
-
 let pageIndex = 0;
-let startX = 0;
 
 document.getElementById("celebrateBtn").onclick = () => {
-  music.muted = false;
-  music.volume = 0.6;
-  music.play().catch(()=>{});
   popup.classList.add("show");
 };
 
 function updateSlider() {
-  slider.style.transform = `translateX(-${pageIndex * 50}%)`;
+  slider.style.transform = `translateX(-${pageIndex * 50}%)`; /* FIX */
   dots.forEach((d, i) => d.classList.toggle("active", i === pageIndex));
 }
 
@@ -289,17 +258,6 @@ function goToPage(i) {
 function closePopup() {
   popup.classList.remove("show");
 }
-
-/* SWIPE SUPPORT */
-slider.addEventListener("touchstart", e => {
-  startX = e.touches[0].clientX;
-});
-
-slider.addEventListener("touchend", e => {
-  const endX = e.changedTouches[0].clientX;
-  if (startX - endX > 50) nextPage();
-  if (endX - startX > 50) prevPage();
-});
 </script>
 
 </body>
